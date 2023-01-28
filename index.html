@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конвертер валют</title>
+
+    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <h1>Проверьте текущие курсы обмена иностранной валюты</h1>
+
+            <div class="main">
+                <div class="wrapper">
+                    <div class="tabs">
+                        <div class="tab active">
+                            <div class="tab-icon">
+                                <img src="./images/convert.svg" alt="convert">
+                            </div>
+
+                            <div class="tab-title">Конвертировать</div>
+                        </div>
+
+                        <div class="tab">
+                            <div class="tab-icon">
+                                <img src="./images/single.svg" alt="single">
+                            </div>
+
+                            <div class="tab-title">Одиночный</div>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <form class="form">
+                            <div class="form-input">
+                                <div class="form-group">
+                                    <Label for="amount">Количество</Label>
+
+                                    <input type="number" name="amount" id="amount" placeholder="1.00">
+                                </div>
+
+                                <div class="form-selects">
+                                    <div class="form-select">
+                                        <label for="from">Из</label>
+
+                                        <select class="select" name="from" id="from" required>
+                                            <option value="" disabled selected hidden>
+                                                Выберите Валюту...
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-select__icon switch-currencies">
+                                        <img src="./images/arrows.png" alt="" />
+                                    </div>
+
+                                    <div class="form-select">
+                                        <label for="to">To</label>
+                                        <select class="select" name="to" id="to" required>
+                                            <option value="" disabled selected hidden>
+                                                Выберите Валюту...
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-info">
+                                <div class="loader">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+
+                                <div class="form-results">
+                                    <div class="form-result__item from" id="resultFrom"></div>
+
+                                    <div class="form-result__equals">
+                                        <img src="./images/equals.svg" alt="" />
+                                    </div>
+
+                                    <div class="form-result__item to" id="resultTo"></div>
+                                </div>
+
+                                <button type="submit" class="form-submit">Конвертировать</button>
+                            </div>
+
+                            <div class="rate-information">
+                                <div class="rate-conversion"></div>
+                                <div class="rate-last"></div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="content" data-child="single">
+                        <div class="currency-wrapper">
+                            <div class="currency-single">
+                                <select class="select" id="singleSelect">
+                                    <option value="" disabled selected hidden>
+                                        Выберите Валюту...
+                                    </option>
+                                </select>
+
+                                <div class="currency-single__item"></div>
+                            </div>
+
+                            <div class="currency-list"></div>
+                        </div>
+
+                        <div class="currency-add">
+                            <button class="currency-add__button">Добавить валюту</button>
+
+                            <select class="select" id="addCurrencySelect">
+                                <option value="" disabled selected hidden>
+                                    Выберите Валюту...
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
