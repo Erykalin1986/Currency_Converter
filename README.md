@@ -1,5 +1,5 @@
 # Currency_Converter
-Конвертер валют на JavaScript
+## Конвертер валют на JavaScript
 <br>
 Создан по видеоуроку на YouTube "Конвертер валют на JavaScript с нуля и API для начинающих".
 <br>
