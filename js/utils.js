@@ -4,7 +4,7 @@ export const getFullTitle = (codes, code) => {
 };
 
 export const formatToCurrency = (code, amount) => {
-  return new Intl.NumberFormat("en-US", {
+  return new Intl.NumberFormat("ru", {
     style: "currency",
     currency: code,
     maximumFractionDigits: 2,

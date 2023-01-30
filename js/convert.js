@@ -41,7 +41,7 @@ const insertResults = ({
   const targetValue = formatToCurrency(to, quote);
 
   rateConversion.innerText = `${baseValue} = ${targetValue}`;
-  rateLast.innerText = `Last updated ${convertTime(timestamp)}`;
+  rateLast.innerText = `Последнее обновление: ${convertTime(timestamp)}`;
 
   formResults.classList.add("show");
 };
