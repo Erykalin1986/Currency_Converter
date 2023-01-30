@@ -15,5 +15,5 @@ export default {
   currentCurrencyList: document.querySelector(".currency-list"),
   singleSelect: document.getElementById("singleSelect"),
   addButton: document.querySelector(".currency-add__button"),
-  addCurrencySelect: document.getElementById("addCurrencySelect")
+  addCurrencySelect: document.getElementById("addCurrencySelect"),
 };

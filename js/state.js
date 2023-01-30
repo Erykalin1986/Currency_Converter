@@ -7,7 +7,7 @@ export default {
     to: "",
   },
   amount: "",
-  loading: false,
+  isLoading: false,
   currentTab: "convert",
   currency: {
     code: "USD",

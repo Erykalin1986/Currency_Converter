@@ -20,10 +20,10 @@ const renderCodeList = () => {
 
 export const fetchCodes = async () => {
   try {
-    var myHeaders = new Headers();
+    let myHeaders = new Headers();
     myHeaders.append("apikey", state.apiKey);
 
-    var requestOptions = {
+    let requestOptions = {
       method: "GET",
       redirect: "follow",
       headers: myHeaders,
