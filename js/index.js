@@ -1,9 +1,13 @@
 import variables from "./variables.js";
 import state from "./state.js";
 import { handleChange } from "./convert.js";
+import { fetchLatest } from "./single.js";
 
-const { selects } = variables;
+const { selects, success, tabs } = variables;
 
+/**
+ * Заполняет список кодов в меню выбора.
+ */
 const renderCodeList = () => {
   selects.forEach((select) => {
     state.codes.forEach(([code]) => {
@@ -18,6 +22,9 @@ const renderCodeList = () => {
   });
 };
 
+/**
+ * Получает список кодов валют.
+ */
 export const fetchCodes = async () => {
   try {
     let myHeaders = new Headers();
@@ -35,8 +42,30 @@ export const fetchCodes = async () => {
     if (data.success) {
       state.codes = Object.entries(data.currencies);
       renderCodeList();
+      fetchLatest();
     }
   } catch (error) {
     console.log(error);
   }
+};
+
+/**
+ * Переключает вкладки.
+ * @param {*} param0 Выбранный элемент вкладки.
+ */
+export const handleTabClick = ({ currentTarget: target }) => {
+  const { tab } = target.dataset;
+  const children = document.querySelectorAll(".content");
+
+  if (!tab || tab === state.currentTab) return;
+
+  tabs.forEach((item) => item.classList.remove("active"));
+  target.classList.add("active");
+
+  for (const child of children) {
+    if (child.dataset.child === tab) child.classList.add("show");
+    else child.classList.remove("show");
+  }
+
+  state.currentTab = tab;
 };

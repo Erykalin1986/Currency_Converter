@@ -1,5 +1,6 @@
-import { handleInput, handleSubmit } from "./convert.js";
-import { fetchCodes } from "./index.js";
+import { handleInput, handleSubmit, switchCurrencies } from "./convert.js";
+import { fetchCodes, handleTabClick } from "./index.js";
+import { handleActionClick } from "./single.js";
 import variables from "./variables.js";
 
 const {
@@ -16,3 +17,6 @@ const {
 fetchCodes();
 amountInput.addEventListener("keyup", handleInput);
 form.addEventListener("submit", handleSubmit);
+switchButton.addEventListener("click", switchCurrencies);
+tabs.forEach((tab) => tab.addEventListener("click", handleTabClick));
+currentCurrency.addEventListener("click", handleActionClick);
