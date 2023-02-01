@@ -20,3 +20,4 @@ form.addEventListener("submit", handleSubmit);
 switchButton.addEventListener("click", switchCurrencies);
 tabs.forEach((tab) => tab.addEventListener("click", handleTabClick));
 currentCurrency.addEventListener("click", handleActionClick);
+currentCurrencyList.addEventListener("click", handleActionClick);

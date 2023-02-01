@@ -1,3 +1,4 @@
+import { renderCurrencyItem } from "./markups.js";
 import state from "./state.js";
 import variables from "./variables.js";
 
@@ -19,12 +20,13 @@ const insertCurrency = (data) => {
  */
 const insertCurrencies = () => {
   const { currency, currencies } = state;
-  const { conversion_rates: rates, base_code: baseCode } = currency;
+  const { quotes: rates, source: baseCode } = currency;
 
   currentCurrency.innerHTML = renderCurrencyItem(currency);
   currentCurrencyList.innerHTML = "";
 
-  Object.entries(rates).forEach(([code, rate]) => {
+  Object.entries(rates).forEach(([quotes, rate]) => {
+    let code = quotes.replace(currency.code, '');
     if (code === baseCode || !currencies.includes(code)) return;
     insertCurrency({ ...currency, code, rate });
   });
@@ -51,28 +53,24 @@ export const fetchLatest = async () => {
 
   if (!code) return;
 
-  let date = new Date().toLocaleDateString();
-  console.log(date);
-//   let year = date.getFullYear();
-//   let month = date.getMonth().format(d);
-//   let day = date.getDate();
-  console.log(`url: `,`https://api.apilayer.com/currency_data/historical?date=${year}-${month}-${day}&currencies=${code}`);
+  let date = new Date().toISOString().slice(0, 10);
 
-//   try {
-//     const response = await fetch(
-//       `https://api.apilayer.com/currency_data/historical?date=${year}-${month}-${day}`,
-//       requestOptions
-//     );
-//     const data = await response.json();
-//     console.log(`data_historical`, data);
+  try {
+    const response = await fetch(
+      `https://api.apilayer.com/currency_data/historical?date=${date}`,
+      requestOptions
+    );
+    const data = await response.json();
+    console.log(`data_historical`, data);
 
-//     if (data.result === success) {
-//       state.currency = { ...state.currency, ...data };
-//       insertCurrencies();
-//     }
-//   } catch (err) {
-//     console.log(err);
-//   }
+    if (data.success) {
+      state.currency = { ...state.currency, ...data };
+      console.log(`state: `,state);
+      insertCurrencies();
+    }
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 /**

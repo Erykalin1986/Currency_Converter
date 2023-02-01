@@ -12,9 +12,9 @@ export default {
   currency: {
     code: "USD",
   },
-  currencies: ["USD", "EUR", "BYN"],
+  currencies: ["USD", "EUR", "RUB", "BYN", "TRY"],
   actions: {
-    remove: "remove",
-    change: "change",
+    remove: "Удалить",
+    change: "Изменить",
   },
 };

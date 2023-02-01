@@ -25,8 +25,8 @@ const getCurrencyItemAction = (isBase) => {
   return `<button data-action="${actionName}" class="currency-${actionName} currency-button">${actionName}</button>`;
 };
 
-export const renderCurrencyItem = ({ code, base_code: baseCode, rate = 1 }) => {
-  const isBase = code === baseCode;
+export const renderCurrencyItem = ({ code, source, rate = 1 }) => {
+  const isBase = code === source;
   const action = getCurrencyItemAction(isBase);
   const full = getFullTitle(state.codes, code);
 
