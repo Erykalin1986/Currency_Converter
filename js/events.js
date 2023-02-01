@@ -1,6 +1,6 @@
 import { handleInput, handleSubmit, switchCurrencies } from "./convert.js";
 import { fetchCodes, handleTabClick } from "./index.js";
-import { handleActionClick } from "./single.js";
+import { handleActionClick, handleSingleSelectChange } from "./single.js";
 import variables from "./variables.js";
 
 const {
@@ -21,3 +21,4 @@ switchButton.addEventListener("click", switchCurrencies);
 tabs.forEach((tab) => tab.addEventListener("click", handleTabClick));
 currentCurrency.addEventListener("click", handleActionClick);
 currentCurrencyList.addEventListener("click", handleActionClick);
+singleSelect.addEventListener("change", handleSingleSelectChange);

@@ -60,7 +60,6 @@ const insertResults = ({
  * @returns 
  */
 export const handleSubmit = async (e) => {
-  console.log(`event: `,e);
   e?.preventDefault();
 
   const {

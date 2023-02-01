@@ -26,7 +26,7 @@ const insertCurrencies = () => {
   currentCurrencyList.innerHTML = "";
 
   Object.entries(rates).forEach(([quotes, rate]) => {
-    let code = quotes.replace(currency.code, '');
+    let code = quotes.replace(currency.code, "");
     if (code === baseCode || !currencies.includes(code)) return;
     insertCurrency({ ...currency, code, rate });
   });
@@ -61,11 +61,9 @@ export const fetchLatest = async () => {
       requestOptions
     );
     const data = await response.json();
-    console.log(`data_historical`, data);
 
     if (data.success) {
       state.currency = { ...state.currency, ...data };
-      console.log(`state: `,state);
       insertCurrencies();
     }
   } catch (err) {
@@ -102,8 +100,6 @@ const changeCurrency = () => {
  */
 export const handleActionClick = ({ target }) => {
   const { action } = target.dataset;
-  console.log(`target`, target);
-  console.log(`action`, action);
 
   if (!action) return;
 
@@ -112,4 +108,12 @@ export const handleActionClick = ({ target }) => {
   } = state;
 
   action === remove ? removeCurrency(target) : changeCurrency();
+};
+
+export const handleSingleSelectChange = ({ target }) => {
+  target.parentElement.classList.remove("active");
+  state.currency = { ...state.currency, code: target.value, source: target.value };
+  console.log(state.currency);
+  fetchLatest();
+  target.value = "";
 };
