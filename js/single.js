@@ -10,7 +10,7 @@ const { success, currentCurrency, currentCurrencyList } = variables;
  */
 const insertCurrency = (data) => {
   currentCurrencyList.insertAdjacentHTML(
-    "afterbegin",
+    'afterbegin',
     renderCurrencyItem(data)
   );
 };
@@ -23,7 +23,7 @@ const insertCurrencies = () => {
   const { quotes: rates, source: baseCode } = currency;
 
   currentCurrency.innerHTML = renderCurrencyItem(currency);
-  currentCurrencyList.innerHTML = "";
+  currentCurrencyList.innerHTML = '';
 
   Object.entries(rates).forEach(([quotes, rate]) => {
     let code = quotes.replace(currency.code, "");
@@ -38,11 +38,11 @@ const insertCurrencies = () => {
  */
 export const fetchLatest = async () => {
   let myHeaders = new Headers();
-  myHeaders.append("apikey", state.apiKey);
+  myHeaders.append('apikey', state.apiKey);
 
   let requestOptions = {
-    method: "GET",
-    redirect: "follow",
+    method: 'GET',
+    redirect: 'follow',
     headers: myHeaders,
   };
 
@@ -57,11 +57,11 @@ export const fetchLatest = async () => {
 
   try {
     const response = await fetch(
-      `https://api.apilayer.com/currency_data/historical?date=${date}`,
+      `${url}/historical?date=${date}&source=${code}`,
       requestOptions
     );
     const data = await response.json();
-
+    
     if (data.success) {
       state.currency = { ...state.currency, ...data };
       insertCurrencies();
@@ -90,7 +90,7 @@ const removeCurrency = (target) => {
  *
  */
 const changeCurrency = () => {
-  currentCurrency.parentElement.classList.add("active");
+  currentCurrency.parentElement.classList.add('active');
 };
 
 /**
@@ -111,9 +111,35 @@ export const handleActionClick = ({ target }) => {
 };
 
 export const handleSingleSelectChange = ({ target }) => {
-  target.parentElement.classList.remove("active");
-  state.currency = { ...state.currency, code: target.value, source: target.value };
-  console.log(state.currency);
+  target.parentElement.classList.remove('active');
+  state.currency = {
+    ...state.currency,
+    code: target.value,
+    source: target.value,
+  };
   fetchLatest();
   target.value = "";
+};
+
+export const addCurrency = ({ currentTarget }) => {
+  currentTarget.parentElement.classList.add('active');
+};
+
+export const handleAddSelectChange = ({ target }) => {
+  const { currency: { quotes: rate, source: baseCode }} = state;
+
+  const currency = Object.entries(rate).find(([key]) => key.includes(target.value));
+
+  console.log(`currency: `,currency);
+
+  if (currency) {
+    const [code, amount] = currency;
+    console.log(`state.currency: `,state.currency);
+    console.log(`code: `,code);
+    console.log(`amount: `,amount);
+    insertCurrency(state.currency, code, { rate: amount });
+  }
+
+  target.parentElement.classList.remove('active');
+  target.value = '';
 };

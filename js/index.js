@@ -14,11 +14,11 @@ const renderCodeList = () => {
       const element = document.createElement("option");
       element.value = code;
       element.innerText = code;
-      select.insertAdjacentElement("beforeend", element);
+      select.insertAdjacentElement('beforeend', element);
     });
 
-    const name = select.getAttribute("name");
-    name && select.addEventListener("change", handleChange);
+    const name = select.getAttribute('name');
+    name && select.addEventListener('change', handleChange);
   });
 };
 
@@ -28,11 +28,11 @@ const renderCodeList = () => {
 export const fetchCodes = async () => {
   try {
     let myHeaders = new Headers();
-    myHeaders.append("apikey", state.apiKey);
+    myHeaders.append('apikey', state.apiKey);
 
     let requestOptions = {
-      method: "GET",
-      redirect: "follow",
+      method: 'GET',
+      redirect: 'follow',
       headers: myHeaders,
     };
 
@@ -55,16 +55,16 @@ export const fetchCodes = async () => {
  */
 export const handleTabClick = ({ currentTarget: target }) => {
   const { tab } = target.dataset;
-  const children = document.querySelectorAll(".content");
+  const children = document.querySelectorAll('.content');
 
   if (!tab || tab === state.currentTab) return;
 
-  tabs.forEach((item) => item.classList.remove("active"));
+  tabs.forEach((item) => item.classList.remove('active'));
   target.classList.add("active");
 
   for (const child of children) {
-    if (child.dataset.child === tab) child.classList.add("show");
-    else child.classList.remove("show");
+    if (child.dataset.child === tab) child.classList.add('show');
+    else child.classList.remove('show');
   }
 
   state.currentTab = tab;
