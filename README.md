@@ -3,5 +3,5 @@
 <br>
 Ссылка на урок: https://www.youtube.com/watch?v=1ta9BhKTfYw&t=194s
 
-<![alt](https://images/page_1.png)>
-<![alt](https://images/page_2.png)>
+<img src="https://images/page_1.png" alt="converter" height="42">
+<img src="https://images/page_2.png" alt="singl" height="42">
