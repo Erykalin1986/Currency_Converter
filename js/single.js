@@ -127,16 +127,10 @@ export const addCurrency = ({ currentTarget }) => {
 
 export const handleAddSelectChange = ({ target }) => {
   const { currency: { quotes: rate, source: baseCode }} = state;
-
   const currency = Object.entries(rate).find(([key]) => key.includes(target.value));
-
-  console.log(`currency: `,currency);
 
   if (currency) {
     const [code, amount] = currency;
-    console.log(`state.currency: `,state.currency);
-    console.log(`code: `,code);
-    console.log(`amount: `,amount);
     insertCurrency(state.currency, code, { rate: amount });
   }
 
