@@ -5,8 +5,8 @@ import variables from "./variables.js";
 const { success, currentCurrency, currentCurrencyList } = variables;
 
 /**
- *
- * @param {*} data
+ *Добавляет на разметку валюту.
+ * @param {*} data Объект для добавления.
  */
 const insertCurrency = (data) => {
   currentCurrencyList.insertAdjacentHTML(
@@ -131,7 +131,7 @@ export const handleAddSelectChange = ({ target }) => {
 
   if (currency) {
     const [code, amount] = currency;
-    insertCurrency(state.currency, code, { rate: amount });
+    insertCurrency({...state.currency, code: target.value, rate: amount });
   }
 
   target.parentElement.classList.remove('active');
